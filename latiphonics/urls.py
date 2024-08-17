@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from latiphonicsapi.views import check_user, register_user
+from latiphonicsapi.views import check_user, register_user, delete_user, get_user
 
 router = routers.DefaultRouter()
 
@@ -27,5 +27,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("register", register_user),
     path('checkuser', check_user, name='check_user'),
+    path('delete_user', delete_user),
+    path('get_user', get_user)
 
 ]

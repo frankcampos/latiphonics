@@ -2,8 +2,7 @@ from latiphonicsapi.models import User
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-
-@api_view(['POST','PUT'])
+@api_view(['POST', 'PUT'])
 def check_user(request):
     '''Checks to see if User has Associated Gamer
 
@@ -25,15 +24,12 @@ def check_user(request):
             'photo': user.photo,
             'about': user.about,
             'uid': user.uid
-
-
         }
         return Response(data)
     else:
         # Bad login details were provided. So we can't log the user in.
-        data = { 'valid': False }
+        data = {'valid': False}
         return Response(data)
-
 
 @api_view(['POST'])
 def register_user(request):
@@ -62,3 +58,52 @@ def register_user(request):
         'about': user.about
     }
     return Response(data)
+
+@api_view(['DELETE'])
+def delete_user(request):
+    try:
+        user_id = request.data['user_id']
+        user = User.objects.get(id=user_id)
+        user.delete()
+        return Response({'message': 'User deleted successfully'})
+    except User.DoesNotExist:
+        return Response({'error': 'User not found'}, status=404)
+
+@api_view(['GET'])
+def get_user(request):
+    try:
+        user_id = request.data['user_id']
+        user = User.objects.get(id=user_id)
+        data = {
+            'id': user.id,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'photo': user.photo,
+            'about': user.about,
+            'uid': user.uid
+        }
+        return Response(data)
+    except User.DoesNotExist:
+        return Response({'error': 'User not found'}, status=404)
+
+@api_view(['put'])
+def update_user(request):
+    try:
+        user_id = request.data['user_id']
+        user = User.objects.get(id=user_id)
+        user.first_name = request.data['first_name']
+        user.last_name = request.data['last_name']
+        user.photo = request.data['photo']
+        user.about = request.data['about']
+        user.save()
+        data = {
+            'id': user.id,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'photo': user.photo,
+            'about': user.about,
+            'uid': user.uid
+        }
+        return Response(data)
+    except User.DoesNotExist:
+        return Response({'error': 'User not found'}, status=404)
