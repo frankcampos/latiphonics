@@ -18,10 +18,11 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from latiphonicsapi.views import check_user, register_user, delete_user, get_user, SymbolView
+from latiphonicsapi.views import check_user, register_user, delete_user, get_user, SymbolView, AddSymbolToListView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'symbol',SymbolView, basename='symbol')
+router.register(r'add-symbol',AddSymbolToListView, basename='add-symbol')
 
 urlpatterns = [
     path('', include(router.urls)),

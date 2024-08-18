@@ -8,7 +8,7 @@ from django.http import HttpResponseServerError
 class SymbolSerializer(serializers.ModelSerializer):
     class Meta:
         model = Symbol
-        fields = ('id', 'picture_url', 'is_voiced', 'is_vowel')
+        fields = ('id', 'picture_url', 'is_voiced', 'is_vowel','pronunciation')
 
 class SymbolView(ViewSet):
 
@@ -50,6 +50,7 @@ class SymbolView(ViewSet):
         symbol.picture_url = request.data['picture_url']
         symbol.is_voiced = request.data['is_voiced']
         symbol.is_vowel = request.data['is_vowel']
+        symbol.pronunciation= request.data['pronunciation']
         symbol.save()
 
         serializer = SymbolSerializer(symbol)
