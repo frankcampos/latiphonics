@@ -4,3 +4,4 @@ from .symbol import SymbolSerializer, SymbolView
 from .learning_symbol import LearningSymbolSerializer, LearningSymbolView
 from .views_add_symbol import AddSymbolToListView
 from .learning_item_symbol import LearningItemSymbolView
+from .learning_symbol import LearningSymbolSerializer, LearningSymbolView
