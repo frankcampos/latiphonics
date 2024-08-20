@@ -16,7 +16,24 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
+from rest_framework import routers
+from latiphonicsapi.views import check_user, register_user, delete_user, get_user, SymbolView, AddSymbolToListView, LearningItemSymbolView, LearningSymbolView,  NoteView
+
+router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'symbol',SymbolView, basename='symbol')
+router.register(r'add-symbol',AddSymbolToListView, basename='add-symbol')
+router.register(r'learn-item-symbol', LearningItemSymbolView, basename='learn-item-symbol')
+router.register(r'learning-symbol', LearningSymbolView, basename='learning-symbol')
+router.register(r'note', NoteView, basename='note')
+
 
 urlpatterns = [
+    path('', include(router.urls)),
     path("admin/", admin.site.urls),
+    path("register", register_user),
+    path('checkuser', check_user, name='check_user'),
+    path('delete_user', delete_user),
+    path('get_user', get_user)
+
 ]

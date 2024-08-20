@@ -40,12 +40,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'latiphonicsapi',
-
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",  # Ensure this is above CommonMiddleware
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -103,6 +103,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# CORS settings
+CORS_ALLOW_ALL_ORIGINS = True  # For development purposes only, restrict in production
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
