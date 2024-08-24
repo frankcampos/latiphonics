@@ -11,7 +11,7 @@ class AddSymbolToListView(ViewSet):
 
     @action(detail=False, methods=['post'])
     def add_to_list(self, request):
-        client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+        client = OpenAI(api_key=os.environ.get('OPENAI_API_KEY'))
         try:
             user_id = request.data['user_id']
             symbol_id = request.data['symbol_id']
