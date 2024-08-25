@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from latiphonicsapi.views import check_user, register_user, delete_user, get_user, SymbolView, AddSymbolToListView, LearningItemSymbolView, LearningSymbolView,  NoteView
+from latiphonicsapi.views import check_user, register_user, delete_user, get_user, update_user, SymbolView, AddSymbolToListView, LearningItemSymbolView, LearningSymbolView,  NoteView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'symbol',SymbolView, basename='symbol')
@@ -34,6 +34,7 @@ urlpatterns = [
     path("register", register_user),
     path('checkuser', check_user, name='check_user'),
     path('delete_user', delete_user),
-    path('get_user', get_user)
+    path('get_user', get_user),
+    path('update_user', update_user)
 
 ]

@@ -1,5 +1,6 @@
 from latiphonicsapi.models import User
 from rest_framework.decorators import api_view
+from rest_framework import status
 from rest_framework.response import Response
 
 @api_view(['POST', 'PUT'])
@@ -23,7 +24,7 @@ def check_user(request):
             'last_name': user.last_name,
             'photo': user.photo,
             'about': user.about,
-            'uid': user.uid
+            'uid': user.uid,
         }
         return Response(data)
     else:
@@ -65,14 +66,14 @@ def delete_user(request):
         user_id = request.data['user_id']
         user = User.objects.get(id=user_id)
         user.delete()
-        return Response({'message': 'User deleted successfully'})
+        return Response({'message': 'User deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
     except User.DoesNotExist:
         return Response({'error': 'User not found'}, status=404)
 
 @api_view(['GET'])
 def get_user(request):
     try:
-        user_id = request.data['user_id']
+        user_id = request.query_params.get('user_id')
         user = User.objects.get(id=user_id)
         data = {
             'id': user.id,
@@ -103,6 +104,7 @@ def update_user(request):
             'photo': user.photo,
             'about': user.about,
             'uid': user.uid
+
         }
         return Response(data)
     except User.DoesNotExist:

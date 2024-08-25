@@ -7,6 +7,3 @@ class User(models.Model):
     photo = models.CharField(max_length=100)
     about = models.CharField(max_length=200)
     uid = models.CharField(max_length=50)
-    admin = models.BooleanField(default=False)
-    created_at = models.DateTimeField(default=timezone.now)
-    updated_at = models.DateTimeField(auto_now=True, null=True)
