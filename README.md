@@ -21,7 +21,7 @@ As a Spanish speaker, one of the most difficult things about pronunciation is th
 ![Screenshot from 2024-08-13 20-39-12](https://github.com/user-attachments/assets/5ce19ac4-0a75-4181-85b2-d214cd839c5d)
 
 ## WireFrame <!-- Link to all the things that are required outside of the ones that have their own section -->
-- [WireFrame](https://www.figma.com/proto/OfS1XxIBm0TEQ2rjqOSlKw/latiphonics?node-id=7-153&t=NnZHrB8W4xbofEOl-1)
+- [WireFrame](https://www.figma.com/design/OfS1XxIBm0TEQ2rjqOSlKw/latiphonics?node-id=7-153&m=dev&t=NnZHrB8W4xbofEOl-1)
 ![Screenshot from 2024-08-13 20-16-47](https://github.com/user-attachments/assets/0a2ea658-4127-431e-8a4c-023307fcc76b)
 
 
