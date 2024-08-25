@@ -104,6 +104,7 @@ def update_user(request):
             'photo': user.photo,
             'about': user.about,
             'uid': user.uid
+
         }
         return Response(data)
     except User.DoesNotExist:
