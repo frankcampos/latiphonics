@@ -17,7 +17,7 @@ class NoteView(ViewSet):
             serializer = noteSerializer(note)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Note.DoesNotExist:
-            return Response({'Boomer I could not find any note'})
+            return Response({'Boomer I could not find any note'}, status= status.HTTP_404_NOT_FOUND)
 
     def list(self, request):
         notes = Note.objects.all()
@@ -46,7 +46,7 @@ class NoteView(ViewSet):
             serializer = noteSerializer(note)
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
         except Note.DoesNotExist:
-            return Response({"Sorry I could not find your note"})
+            return Response({"Sorry I could not find your note"},status=status.HTTP_404_NOT_FOUND)
 
     def destroy(self, request, pk):
       try:
@@ -55,4 +55,4 @@ class NoteView(ViewSet):
 
           return Response({}, status=status.HTTP_204_NO_CONTENT)
       except Note.DoesNotExist:
-          return Response({"Sorry I could not find your note"})
+          return Response({"Sorry I could not find your note"},status=status.HTTP_404_NOT_FOUND)
