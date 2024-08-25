@@ -6,6 +6,8 @@ As a Spanish speaker, one of the most difficult things about pronunciation is th
 ## The Solution <!-- OPTIONAL, but doesn't hurt -->
 
 
+![Screenshot from 2024-08-13 20-16-47](https://github.com/user-attachments/assets/007d2946-b37e-4c26-9c9b-cb3c451a31fb)
+
 
 ## About the User <!-- This is a scaled down user persona -->
 1. As a Spanish speaker, I want to view the IPA symbols for each vowel so that I can learn the correct representation of individual vowel sounds.
@@ -16,11 +18,12 @@ As a Spanish speaker, one of the most difficult things about pronunciation is th
 
 ## ERD <!-- Link to all the things that are required outside of the ones that have their own section -->
 - [Database Relationship Diagram](https://dbdiagram.io/d/LatiPhonics-6556bf363be14957872a570d)
--![Screenshot from 2024-03-21 06-29-24](https://github.com/frankcampos/think-thrive2/assets/26656478/b215a9c6-a596-4de3-a76a-0e7d35c74104)
+![Screenshot from 2024-08-13 20-39-12](https://github.com/user-attachments/assets/5ce19ac4-0a75-4181-85b2-d214cd839c5d)
 
 ## WireFrame <!-- Link to all the things that are required outside of the ones that have their own section -->
 - [WireFrame](https://www.figma.com/proto/OfS1XxIBm0TEQ2rjqOSlKw/latiphonics?node-id=0-1&t=91w8vq0agTf6yhcJ-1)
--![Screenshot from 2024-03-21 06-29-24](https://github.com/frankcampos/think-thrive2/assets/26656478/b215a9c6-a596-4de3-a76a-0e7d35c74104)
+![Screenshot from 2024-08-13 20-16-47](https://github.com/user-attachments/assets/0a2ea658-4127-431e-8a4c-023307fcc76b)
+
 
 ## PostMan Collection<!-- Link to all the things that are required outside of the ones that have their own section -->
 - [Postman Collection](https://documenter.getpostman.com/view/34832435/2sA3sAi7rC)
