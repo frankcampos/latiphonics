@@ -1,6 +1,7 @@
 from  latiphonicsapi.models import LearningSymbol, User
 from latiphonicsapi.views import LearningSymbolSerializer
 from rest_framework.test import APITestCase
+from rest_framework import status
 from datetime import date
 from django.urls import reverse
 from django.http import HttpResponseServerError
@@ -37,6 +38,7 @@ class LearningSymbolTests(APITestCase):
     response = self.client.get(self.url)
     respond_expected = LearningSymbolSerializer(self.LearningSymbol).data
     self.assertEqual(response.data, respond_expected)
+    self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 # get all the learning Symbols
   def test_get_all_learning_symbols(self):
@@ -44,6 +46,7 @@ class LearningSymbolTests(APITestCase):
     list_learning_symbols = LearningSymbol.objects.all()
     expected_respond = LearningSymbolSerializer(list_learning_symbols, many = True)
     self.assertEqual(response.data, expected_respond.data)
+    self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 # create learning symbol
   def test_create_learning_symbol(self):
@@ -60,6 +63,7 @@ class LearningSymbolTests(APITestCase):
     expected_respond = LearningSymbol.objects.last()
     serializer_expected_respond = LearningSymbolSerializer(expected_respond)
     self.assertEqual(respond.data, serializer_expected_respond.data)
+    self.assertEqual(respond.status_code, status.HTTP_201_CREATED)
 
 
 
@@ -78,8 +82,10 @@ class LearningSymbolTests(APITestCase):
     expected_respond = LearningSymbol.objects.last()
     serializer_expected_respond = LearningSymbolSerializer(expected_respond)
     self.assertEqual(respond.data, serializer_expected_respond.data)
+    self.assertEqual(respond.status_code, status.HTTP_202_ACCEPTED)
 
 # delete learning symbol
   def test_delete_symbol(self):
     response = self.client.delete(self.url)
     self.assertEqual(response.data , {})
+    self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
