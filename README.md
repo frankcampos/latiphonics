@@ -27,6 +27,7 @@ As a Spanish speaker, one of the most difficult things about pronunciation is th
 
 ## PostMan Collection<!-- Link to all the things that are required outside of the ones that have their own section -->
 - [Postman Collection](https://documenter.getpostman.com/view/34832435/2sA3sAi7rC)
+- [Loom video about my Postman Collection](https://www.loom.com/share/46328c145dc9431a85fcab1df672b67b?sid=48a2a442-1518-4311-9abc-a7ad8c8472b0)
 
 ## Project Board <!-- These can be inside of your project. Look at the repos from class and see how the images are included in the readme -->
  [Project Board](https://github.com/users/frankcampos/projects/9)
