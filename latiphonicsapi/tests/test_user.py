@@ -42,7 +42,7 @@ class UserTests(APITestCase):
   def test_update_user(self):
     url = "/update_user"
     response = self.client.put(url, {
-      'user_id': self.user.id,
+      'id': self.user.id,
       'first_name': 'Daniel',
       'last_name': 'Campos',
       'photo': 'https://www.google.com',
