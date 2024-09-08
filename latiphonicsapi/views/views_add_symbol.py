@@ -61,14 +61,13 @@ class AddSymbolToListView(ViewSet):
 
     def generate_prompt(self, about, pronunciation):
       return (
-          f"Please create three example phrases using the pronunciation '{pronunciation}' "
-          f"and provide their transcriptions in the International Phonetic Alphabet (IPA). "
-          f"Each phrase should be relevant to the following user description: {about}. "
-          "The output should strictly be in the following format without any additional text:\n\n"
-          "1. **Phrase: \"[Phrase 1]\"**\n"
-          "   - IPA: /[IPA transcription 1]/\n\n"
-          "2. **Phrase: \"[Phrase 2]\"**\n"
-          "   - IPA: /[IPA transcription 2]/\n\n"
-          "3. **Phrase: \"[Phrase 3]\"**\n"
-          "   - IPA: /[IPA transcription 3]/"
-      )
+        f"Please create three example phrases using the pronunciation '{pronunciation}' "
+        f"and provide their transcriptions in the International Phonetic Alphabet (IPA). "
+        f"Each phrase should be relevant to the following user description: {about}. "
+        "The output should strictly be in the following JSON format without any additional text:\n\n"
+        "[\n"
+        "  {\"phrase\": \"[Phrase 1]\", \"ipa\": \"[IPA transcription 1]\"},\n"
+        "  {\"phrase\": \"[Phrase 2]\", \"ipa\": \"[IPA transcription 2]\"},\n"
+        "  {\"phrase\": \"[Phrase 3]\", \"ipa\": \"[IPA transcription 3]\"}\n"
+        "]"
+    )

@@ -1,3 +1,4 @@
+import logging
 from latiphonicsapi.models import User,LearningSymbol
 from rest_framework.viewsets import ViewSet
 from rest_framework import status,serializers
@@ -40,11 +41,12 @@ class LearningSymbolView(ViewSet):
     return Response(serializer.data ,status=status.HTTP_201_CREATED)
 
   def update(self,request,pk):
+    logging.debug(f"Request data: {request.data}")
     try:
-        user = User.objects.get(pk=request.data['user'])
+        user = User.objects.get(pk=request.data['user_id'])
         Learning_symbol=LearningSymbol.objects.get(pk=pk)
-        Learning_symbol.prompt = request.data['prompt']
-        Learning_symbol.example_phrases = request.data['example_phrases']
+        # Learning_symbol.prompt = request.data['prompt']
+        # Learning_symbol.example_phrases = request.data['example_phrases']
         Learning_symbol.video_url = request.data['video_url']
         Learning_symbol.user = user
         Learning_symbol.save()

@@ -1,14 +1,25 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status,serializers
-from latiphonicsapi.models import Symbol
+from latiphonicsapi.models import Symbol, LearnItemSymbol
 from django.http import HttpResponseServerError
+
+# class TreeSerializer(serializers.ModelSerializer):
+#     compounds = serializers.SerializerMethodField()
+#     def get_compounds(self, object):
+#         return Compound.objects.filter(trees__tree_id=object)
+#     class Meta:
+#         model = Tree
+#         fields = ('id', 'name', 'uid', 'compounds')
 
 
 class SymbolSerializer(serializers.ModelSerializer):
+    added = serializers.SerializerMethodField()
+    def get_added(self,obj):
+      return LearnItemSymbol.objects.filter(symbol=obj).exists()
     class Meta:
         model = Symbol
-        fields = ('id', 'picture_url', 'is_voiced', 'is_vowel','pronunciation')
+        fields = ('id', 'picture_url', 'is_voiced', 'is_vowel','pronunciation', 'added')
 
 class SymbolView(ViewSet):
 
@@ -21,6 +32,8 @@ class SymbolView(ViewSet):
       return Response(serializer.data, status=status.HTTP_200_OK)
     except Symbol.DoesNotExist:
       return Response({'Boomer I could not find any symbol'})
+    except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 #list symbols
   def list(self,request):
@@ -38,7 +51,8 @@ class SymbolView(ViewSet):
     symbol = Symbol.objects.create(
       picture_url = request.data['picture_url'],
       is_voiced = request.data['is_voiced'],
-      is_vowel = request.data['is_vowel']
+      is_vowel = request.data['is_vowel'],
+      pronunciation = request.data['pronunciation']
     )
     serializer = SymbolSerializer(symbol)
     return Response(serializer.data ,status=status.HTTP_201_CREATED)
