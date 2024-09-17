@@ -59,15 +59,29 @@ class AddSymbolToListView(ViewSet):
         except Exception as e:
             return Response({"detail": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+    # def generate_prompt(self, about, pronunciation):
+    #   return (
+    #     f"Please create three example phrases using the pronunciation '{pronunciation}' "
+    #     f"and provide their transcriptions in the International Phonetic Alphabet (IPA). "
+    #     f"Each phrase should be relevant to the following user description: {about}. "
+    #     "The output should strictly be in the following JSON format without any additional text:\n\n"
+    #     "[\n"
+    #     "  {\"phrase\": \"[Phrase 1]\", \"ipa\": \"[IPA transcription 1]\"},\n"
+    #     "  {\"phrase\": \"[Phrase 2]\", \"ipa\": \"[IPA transcription 2]\"},\n"
+    #     "  {\"phrase\": \"[Phrase 3]\", \"ipa\": \"[IPA transcription 3]\"}\n"
+    #     "]"
+    # )
+
     def generate_prompt(self, about, pronunciation):
-      return (
-        f"Please create three example phrases using the pronunciation '{pronunciation}' "
-        f"and provide their transcriptions in the International Phonetic Alphabet (IPA). "
-        f"Each phrase should be relevant to the following user description: {about}. "
-        "The output should strictly be in the following JSON format without any additional text:\n\n"
-        "[\n"
-        "  {\"phrase\": \"[Phrase 1]\", \"ipa\": \"[IPA transcription 1]\"},\n"
-        "  {\"phrase\": \"[Phrase 2]\", \"ipa\": \"[IPA transcription 2]\"},\n"
-        "  {\"phrase\": \"[Phrase 3]\", \"ipa\": \"[IPA transcription 3]\"}\n"
-        "]"
-    )
+        return (
+            f"Please create three example phrases that emphasize the use of the phonetic sound '{pronunciation}'. "
+            f"Each phrase should be related to the following user description: {about}, "
+            f"and introduce new vocabulary to help the user expand their knowledge. "
+            "Additionally, provide the phonetic transcription of each phrase in the International Phonetic Alphabet (IPA). "
+            "The output should strictly be in the following JSON format without any additional text:\n\n"
+            "[\n"
+            "  {\"phrase\": \"[Phrase 1]\", \"ipa\": \"[IPA transcription 1]\"},\n"
+            "  {\"phrase\": \"[Phrase 2]\", \"ipa\": \"[IPA transcription 2]\"},\n"
+            "  {\"phrase\": \"[Phrase 3]\", \"ipa\": \"[IPA transcription 3]\"}\n"
+            "]"
+        )
