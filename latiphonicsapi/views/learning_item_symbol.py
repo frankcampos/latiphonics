@@ -8,6 +8,7 @@ class LearningItemSymbolSerializer(serializers.ModelSerializer):
   class Meta:
     model = LearnItemSymbol
     fields = ('id','symbol', 'learning_symbol')
+    depth = 1
 
 class LearningItemSymbolView(ViewSet):
   def retrieve(self,request, pk):

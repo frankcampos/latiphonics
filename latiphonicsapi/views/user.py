@@ -74,6 +74,7 @@ def delete_user(request):
 def get_user(request):
     try:
         user_id = request.query_params.get('user_id')
+        # user_id = request.data['user_id']
         user = User.objects.get(id=user_id)
         data = {
             'id': user.id,
@@ -90,7 +91,7 @@ def get_user(request):
 @api_view(['put'])
 def update_user(request):
     try:
-        user_id = request.data['user_id']
+        user_id = request.data['id']
         user = User.objects.get(id=user_id)
         user.first_name = request.data['first_name']
         user.last_name = request.data['last_name']

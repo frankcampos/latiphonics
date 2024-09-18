@@ -22,7 +22,7 @@ class NoteView(ViewSet):
     def list(self, request):
         notes = Note.objects.all()
         if not notes.exists():
-            return Response({'empty': '[]'}, status=status.HTTP_404_NOT_FOUND)
+            return Response([], status=status.HTTP_404_NOT_FOUND)
         serializer = noteSerializer(notes, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
