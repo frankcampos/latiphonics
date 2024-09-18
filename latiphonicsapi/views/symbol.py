@@ -19,7 +19,7 @@ class SymbolSerializer(serializers.ModelSerializer):
       return LearnItemSymbol.objects.filter(symbol=obj).exists()
     class Meta:
         model = Symbol
-        fields = ('id', 'picture_url', 'is_voiced', 'is_vowel','pronunciation', 'added')
+        fields = ('id', 'picture_url', 'is_voiced', 'is_vowel','pronunciation', 'added', 'sound_url')
 
 class SymbolView(ViewSet):
 
@@ -65,6 +65,7 @@ class SymbolView(ViewSet):
         symbol.is_voiced = request.data['is_voiced']
         symbol.is_vowel = request.data['is_vowel']
         symbol.pronunciation= request.data['pronunciation']
+        symbol.sound_url=request.data['sound_url']
         symbol.save()
 
         serializer = SymbolSerializer(symbol)
