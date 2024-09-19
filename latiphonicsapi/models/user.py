@@ -5,5 +5,5 @@ class User(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     photo = models.CharField(max_length=250)
-    about = models.CharField(max_length=200)
-    uid = models.CharField(max_length=50)
+    about = models.CharField(max_length=500)
+    uid = models.CharField(max_length=150)
