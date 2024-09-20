@@ -4,6 +4,6 @@ from django.utils import timezone
 class User(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    photo = models.CharField(max_length=80000)
-    about = models.CharField(max_length=50000)
+    photo = models.CharField(max_length=10000000)
+    about = models.CharField(max_length=10000000)
     uid = models.CharField(max_length=1500)
