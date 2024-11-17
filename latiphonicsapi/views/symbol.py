@@ -16,7 +16,11 @@ from django.http import HttpResponseServerError
 class SymbolSerializer(serializers.ModelSerializer):
     added = serializers.SerializerMethodField()
     def get_added(self,obj):
-      return LearnItemSymbol.objects.filter(symbol=obj).exists()
+      user_id = self.context.get('user_id')
+      if user_id:
+        return LearnItemSymbol.objects.filter(symbol=obj, user=user_id).exists()
+      else:
+        return False
     class Meta:
         model = Symbol
         fields = ('id', 'picture_url', 'is_voiced', 'is_vowel','pronunciation', 'added', 'sound_url')
@@ -36,12 +40,16 @@ class SymbolView(ViewSet):
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 #list symbols
+#LearnItemSymbol.objects.filter(symbol=obj)
   def list(self,request):
     """get all the symbols"""
-    symbols= Symbol.objects.all()
+    user_id = request.query_params.get("user_id")
+    
+    symbols=Symbol.objects.all()
+
     if not symbols.exists():
           return Response({'empty': '[]'}, status=status.HTTP_404_NOT_FOUND)
-    serializer =  SymbolSerializer(symbols, many=True)
+    serializer =  SymbolSerializer(symbols, many=True, context={'user_id':user_id})
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 

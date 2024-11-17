@@ -1,4 +1,4 @@
-from latiphonicsapi.models import Symbol, LearnItemSymbol, LearningSymbol
+from latiphonicsapi.models import Symbol, LearnItemSymbol, LearningSymbol, User
 from rest_framework.viewsets import ViewSet
 from rest_framework import status, serializers
 from rest_framework.response import Response
@@ -21,11 +21,27 @@ class LearningItemSymbolView(ViewSet):
       return Response({'Boomer I could not find any Learning Item'})
 
   def list(self,request):
-    """get all the Learning Items"""
-    Learning_items= LearnItemSymbol.objects.all()
+    """get all the Learning Items by user"""
+    # Learning_items= LearnItemSymbol.objects.all()
+    # for Learning_item in Learning_items:
+    #     print(f'this is my learning items => {Learning_item.user.about}')
+    # if not Learning_items.exists():
+    #       return Response({'empty': '[]'}, status=status.HTTP_404_NOT_FOUND)
+    # serializer =  LearningItemSymbolSerializer(Learning_items, many=True)
+    # return Response(serializer.data, status=status.HTTP_200_OK)
+    user_id = request.query_params.get('user_id')
+    if not user_id:
+      return Response({'error': 'user_id is required'}, status=status.HTTP_400_BAD_REQUEST)
+    try:
+      user = User.objects.get(id=user_id)
+    except User.DoesNotExist:
+      return Response({'error':'User not found'}, status=status.HTTP_404_NOT_FOUND)
+    Learning_items = LearnItemSymbol.objects.filter(user=user)
+
     if not Learning_items.exists():
-          return Response({'empty': '[]'}, status=status.HTTP_404_NOT_FOUND)
-    serializer =  LearningItemSymbolSerializer(Learning_items, many=True)
+        return Response({'empty': '[]'}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = LearningItemSymbolSerializer(Learning_items, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
   def create(self, request):
