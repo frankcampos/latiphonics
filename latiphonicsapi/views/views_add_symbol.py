@@ -45,7 +45,9 @@ class AddSymbolToListView(ViewSet):
             # Create LearnItemSymbol instance
             learn_item_symbol = LearnItemSymbol.objects.create(
                 symbol=symbol,
-                learning_symbol=learning_symbol
+                learning_symbol=learning_symbol,
+                #add the user ID to this payload
+                user = user
             )
 
             return Response({
